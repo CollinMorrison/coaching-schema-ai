@@ -1,15 +1,15 @@
 sql_create_coach_table = """
     CREATE TABLE IF NOT EXISTS coach (
-        id INTEGER PRIMARY KEY DEFAULT(newid()) NOT NULL UNIQUE,
+        id INTEGER PRIMARY KEY NOT NULL UNIQUE,
         first_name VARCHAR(50) NOT NULL,
         last_name VARCHAR(50) NOT NULL,
         gender char(1) NOT NULL CHECK (gender IN ('M', 'F')),
         phone_number CHAR(10) NOT NULL
     );"""
 
-sql_creat_athlete_table = """
+sql_create_athlete_table = """
     CREATE TABLE IF NOT EXISTS athlete (
-        id INTEGER PRIMARY KEY DEFAULT(newid()) NOT NULL UNIQUE,
+        id INTEGER PRIMARY KEY NOT NULL UNIQUE,
         coach_id INTEGER NOT NULL,
         first_name VARCHAR(50) NOT NULL,
         last_name VARCHAR(50) NOT NULL,
@@ -22,7 +22,7 @@ sql_creat_athlete_table = """
 
 sql_create_training_plan_table = """
     CREATE TABLE IF NOT EXISTS training_plan (
-        id INTEGER PRIMARY KEY DEFAULT(newid()) NOT NULL UNIQUE,
+        id INTEGER PRIMARY KEY NOT NULL UNIQUE,
         coach_id INTEGER NOT NULL,
         athlete_id INTEGER NOT NULL,
         start_date DATE NOT NULL,
@@ -38,7 +38,7 @@ sql_create_training_plan_table = """
 
 sql_create_workout_table = """
     CREATE TABLE IF NOT EXISTS workout (
-        id INTEGER PRIMARY KEY DEFAULT(newid()) NOT NULL UNIQUE,
+        id INTEGER PRIMARY KEY NOT NULL UNIQUE,
         athlete_id INTEGER NOT NULL,
         training_plan_id INTEGER NOT NULL,
         date DATE NOT NULL,
@@ -56,7 +56,7 @@ sql_create_workout_table = """
 
 sql_create_metrics_table = """
     CREATE TABLE IF NOT EXISTS metrics (
-        id INTEGER PRIMARY KEY DEFAULT(newid()) NOT NULL UNIQUE,
+        id INTEGER PRIMARY KEY NOT NULL UNIQUE,
         athlete_id INTEGER NOT NULL,
         date DATE NOT NULL,
         resting_heart_rate INTEGER,
@@ -69,5 +69,5 @@ sql_create_metrics_table = """
     );"""
 
 def get_schema():
-    schema = f"{sql_create_coach_table} {sql_creat_athlete_table} {sql_create_training_plan_table} {sql_create_workout_table} {sql_create_metrics_table}"
+    schema = f"{sql_create_coach_table} {sql_create_athlete_table} {sql_create_training_plan_table} {sql_create_workout_table} {sql_create_metrics_table}"
     return schema
