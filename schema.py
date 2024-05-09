@@ -67,3 +67,7 @@ sql_create_metrics_table = """
             ON DELETE CASCADE
             ON UPDATE CASCADE
     );"""
+
+def get_schema():
+    schema = f"{sql_create_coach_table} {sql_creat_athlete_table} {sql_create_training_plan_table} {sql_create_workout_table} {sql_create_metrics_table}"
+    return schema
