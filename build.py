@@ -10,6 +10,11 @@ def insert_into_coach(conn):
             (3, 'Alex', 'Johnson', 'M', '5551234567');
     """
 
+    cur = conn.cursor()
+    cur.execute(sql)
+    conn.commit()
+    return cur.lastrowid
+
 def insert_into_athlete(conn):
     sql = """
         INSERT INTO athlete (coach_id, first_name, last_name, gender, phone_number) VALUES
