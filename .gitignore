@@ -1,3 +1,5 @@
 database.db
 database.db-journal
 __pycache__
+config.json
+response*

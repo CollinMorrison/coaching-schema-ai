@@ -2,6 +2,10 @@ import os
 from db import create_table, create_connection
 from schema import *
 
+
+
+
+
 def insert_into_coach(conn):
     sql = """
         INSERT INTO coach (id, first_name, last_name, gender, phone_number) VALUES
@@ -68,9 +72,15 @@ def insert_into_metrics(conn):
     return cur.lastrowid
 
 def main():
+
+    # delete the old db
+    if (os.path.exists("./database.db")):
+        os.remove("./database.db")
+
     database = "./database.db"
 
     conn = create_connection(database)
+    
     create_table(conn, sql_create_coach_table)
     insert_into_coach(conn)
     create_table(conn, sql_create_athlete_table)
@@ -83,6 +93,7 @@ def main():
     insert_into_metrics(conn)
 
     print("Database setup complete")
+    conn.close()
 
 if __name__ == '__main__':
     main()
